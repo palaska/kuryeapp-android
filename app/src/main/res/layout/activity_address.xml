@@ -1,0 +1,105 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.mobile.kuryeapp.kuryeappv01.AddressActivity"
+    android:background="#e9e8dd">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ADRES"
+        android:id="@+id/ADRES"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="130dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Rumeli Hisari Mahallesi, Saygili Sokak, Gelincik Apartmani, No:3, Daire:3 Etiler/Istanbul"
+        android:id="@+id/addressText"
+        android:gravity="center_vertical|center_horizontal"
+        android:maxHeight="100dp"
+        android:elegantTextHeight="false"
+        android:textSize="17sp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:padding="3dp"
+        android:background="#ffffff"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_margin="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="ADRES ACIKLAMASI"
+        android:id="@+id/ADRESACIK"
+        android:layout_marginLeft="15dp"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Lorem Ipsum dolor sit amet, consectetuer adipiscingelit. Duis tellus. Donec ante dolor, iaculis nec, gravidaac, cursus in, eros. Mauris vestibulum, felis et egestasullamcorper, purus nibh vehicula sem, eu egestas antenisl non justo."
+        android:id="@+id/addressdesc"
+        android:gravity="center_vertical|center_horizontal"
+        android:maxHeight="100dp"
+        android:elegantTextHeight="false"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:padding="3dp"
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_margin="20dp" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/haritayagitbtn"
+        android:background="@drawable/btn_back"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:text="Haritaya Git"
+        android:textSize="18dp" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/odemealbtn"
+        android:background="@drawable/btn_blue_back"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:text="ODEME AL"
+        android:textSize="18dp"
+        android:layout_marginTop="15dp" />
+
+</LinearLayout>

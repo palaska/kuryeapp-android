@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e9e8dd"
+    tools:context=".LoginActivity"
+    android:weightSum="1">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:background="#ffffff"
+        android:layout_gravity="center"
+        android:src="@drawable/logo"
+        android:layout_weight="0.40"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/email"
+        android:hint="ornekmail@kuryeapp.com"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="80dp"
+        android:inputType="textPassword"
+        android:hint="******"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:id="@+id/loginbtn"
+        android:background="@drawable/btn_back"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:text="GIRIS YAP"
+        android:textSize="22dp"
+        android:layout_marginTop="10dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal" >
+
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:id="@+id/forgotpass"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_red_back"
+            android:textColor="#ffffff"
+            android:textAlignment="center"
+            android:text="SIFREMI UNUTTUM"
+            android:layout_marginTop="20dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
