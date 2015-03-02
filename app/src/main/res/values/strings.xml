@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Node Login</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Kuryeapp</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_address">AddressActivity</string>
+    <string name="label1">One</string>
+    <string name="label2">Two</string>
+    <string name="body1">Body One</string>
+    <string name="body2">Body Two</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+
 
 </resources>
