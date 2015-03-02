@@ -65,9 +65,9 @@ public class LoginActivity extends Activity {
                 params.add(new BasicNameValuePair("android_id",android_id));
                 //maybe additional info
 
-                ServerRequest sr = new ServerRequest();
-                JSONObject json = sr.getJSON("http://kuryeapp.com/login",params);
-
+//                ServerRequest sr = new ServerRequest();
+//                JSONObject json = sr.getJSON("http://kuryeapp.com/login",params);
+                  JSONObject json = new JSONObject();
                 //temporarily filling json
                 try {
                     json.put("response", "Response of json");

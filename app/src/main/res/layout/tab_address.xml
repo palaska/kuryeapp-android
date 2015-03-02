@@ -16,7 +16,7 @@
         android:textColor="#000000"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp" />
 
     <TextView
@@ -86,8 +86,8 @@
         android:id="@+id/haritayagitbtn"
         android:background="@drawable/btn_back"
         android:textColor="#ffffff"
-        android:textAlignment="center"
         android:text="Haritaya Git"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:textAlignment="center" />
 
 </LinearLayout>
