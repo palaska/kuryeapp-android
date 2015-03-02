@@ -17,24 +17,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.mobile.kuryeapp.kuryeappv01" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bca33782-886d-4bf4-9dad-f273cb735437" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/AddressFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/AddressFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/AddressPaymentActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/AddressPaymentActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/LoginActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/PaymentFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/mobile/kuryeapp/kuryeappv01/PaymentFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kuryeapp/tabsswipe/adapter/TabsPagerAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/kuryeapp/tabsswipe/adapter/TabsPagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_addresspayment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_addresspayment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/btn_orange.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_orange.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_address.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_address.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_21_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_21_0_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/tab_address.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tab_address.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/tab_payment.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tab_payment.xml" />
-    </list>
+    <list default="true" id="bca33782-886d-4bf4-9dad-f273cb735437" name="Default" comment="" />
     <ignored path="android-app.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -56,11 +39,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="activity_addresspayment.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="activity_addresspayment.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_addresspayment.xml">
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="360">
               <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tab_payment.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tab_payment.xml">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2130">
+              <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -1740,7 +1736,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1292" y="-431" width="1346" height="702" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1986,10 +1982,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tab_payment.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_addresspayment.xml">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2130">
-          <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="360">
+          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1997,10 +1993,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_addresspayment.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tab_payment.xml">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="360">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1513" max-vertical-offset="2130">
+          <caret line="121" column="48" selection-start-line="121" selection-start-column="48" selection-end-line="121" selection-end-column="48" />
           <folding />
         </state>
       </provider>
