@@ -83,10 +83,22 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:id="@+id/haritayagitbtn"
-        android:background="@drawable/btn_back"
+        android:id="@+id/gotomapbtn"
+        android:background="@drawable/btn_blue_back"
         android:textColor="#ffffff"
         android:text="Haritaya Git"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/callbtn"
+        android:background="@drawable/btn_back"
+        android:textColor="#ffffff"
+        android:text="Müşteriyi Ara"
         android:textSize="18dp"
         android:textAlignment="center" />
 

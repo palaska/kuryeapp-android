@@ -9,18 +9,18 @@
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-5c76212eb5a3d6e987c955ce6be1fbe369ea32ad.jar" />
     </item>
     <item
-        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp/okhttp/2.0.0/4c8d1536dba3812cc1592090dc20c47a4ed3c35e/okhttp-2.0.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5c768c3a6147ddfaa3a0dd94e7c0682902570a11.jar" />
+        sha1="4c8d1536dba3812cc1592090dc20c47a4ed3c35e">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/okhttp-2.0.0-0c0eb4ba4e18fb4fd73ff9e185f453759ce3b676.jar" />
     </item>
     <item
-        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/joda-time/joda-time/2.4/89e9725439adffbbd41c5f5c215c136082b34a7f/joda-time-2.4.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-6b52b2ab06961c95a55ff6b154215a34b37f2104.jar" />
+        sha1="89e9725439adffbbd41c5f5c215c136082b34a7f">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/joda-time-2.4-b10ddfa335724f5c20c865e82dcdc53be45d494e.jar" />
     </item>
     <item
         jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
@@ -37,11 +37,18 @@
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-723fc0c35cc41ff22d45ed92b95d7cd49ef2e9f6.jar" />
     </item>
     <item
-        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/libs/guava-18.0.jar"
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="cce0823396aa693798f8882e64213b1772032b09">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/guava-18.0-5bfd5715c10b5fc68caeeddb6011767ff1a241fc.jar" />
+        sha1="a681c044244d9fc375198588297a39ba78028423">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/retrofit-1.9.0-860ebf3d00c17ee5e80128bc3c8197899f1b717e.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.google.maps/google-maps-services/0.1.5/2259657970fd09dd941ffb88c059bc3bbe09b17f/google-maps-services-0.1.5.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2259657970fd09dd941ffb88c059bc3bbe09b17f">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/google-maps-services-0.1.5-c15d65aa6af4aa032e248b4081cf57307d05e9fd.jar" />
     </item>
     <item
         jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.astuetz/pagerslidingtabstrip/1.0.1/classes.jar"
@@ -49,6 +56,41 @@
         revision="21.1.2"
         sha1="7912610ed96381c25c36d986eba422731b9641b6">
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-4158aa95c5ee8fad92170ddfa14f2f83b43e02d6.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/src/main/libs/guava-18.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="cce0823396aa693798f8882e64213b1772032b09">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/guava-18.0-d0948129075611a06879c0082e7962aa3ab01596.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5c768c3a6147ddfaa3a0dd94e7c0682902570a11.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.0.0/2534c458682c73f5b9871131ab3098d3f987ca3/okio-1.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="02534c458682c73f5b9871131ab3098d3f987ca3">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/okio-1.0.0-7afb9a90230b28643de7f0ac8523dd8934336470.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-6b52b2ab06961c95a55ff6b154215a34b37f2104.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3.1/ecb6e1f8e4b0e84c4b886c2f14a1500caf309757/gson-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/gson-2.3.1-d532c10c4d59b50e530dc4ebee667ec56c3123cf.jar" />
     </item>
 
 </items>

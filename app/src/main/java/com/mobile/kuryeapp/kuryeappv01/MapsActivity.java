@@ -1,16 +1,38 @@
 package com.mobile.kuryeapp.kuryeappv01;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mobile.kuryeapp.kuryeappv01.CustomAPIs.DirectionsAPI;
 
-public class MapsActivity extends FragmentActivity {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import retrofit.RestAdapter;
+
+
+public class MapsActivity extends FragmentActivity implements LocationListener {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    private Double x,y;
+    private String addr;
+    private LocationManager locMan;
+    private double myLat;
+    private double myLng;
+    private Marker userMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +44,7 @@ public class MapsActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
         setUpMapIfNeeded();
     }
 
@@ -60,6 +83,60 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        x = this.getIntent().getDoubleExtra("x",0);
+        y = this.getIntent().getDoubleExtra("y",0);
+        addr = this.getIntent().getStringExtra("address");
+
+        locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        myLat = lastLoc.getLatitude();
+        myLng = lastLoc.getLongitude();
+        LatLng lastLatLng = new LatLng(myLat, myLng);
+
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint("http://maps.googleapis.com")
+                .build();
+
+        DirectionsAPI service = restAdapter.create(DirectionsAPI.class);
+        JSONObject response = service.getResponse(myLat,myLng,x,y);
+
+        try {
+            JSONArray routeArray = response.getJSONArray("routes");
+            JSONObject routeObject = routeArray.getJSONObject(0);
+            String polyline = routeObject.getJSONObject("overview_polyline").get("points").toString();
+            Log.d("polyline",polyline);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+//        LatLng myCoord = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+        LatLng destCoord = new LatLng(x ,y);
+        CameraPosition cameraPosition1 = new CameraPosition.Builder().target(destCoord).zoom(14).build();
+        CameraPosition cameraPosition2 = new CameraPosition.Builder().target(lastLatLng).zoom(16).build();
+        mMap.setMyLocationEnabled(true);
+        mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
+        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        myLat = location.getLatitude();
+        myLng = location.getLongitude();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

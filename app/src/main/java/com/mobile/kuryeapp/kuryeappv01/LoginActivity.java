@@ -1,51 +1,41 @@
 package com.mobile.kuryeapp.kuryeappv01;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-import android.provider.Settings.Secure;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
+import com.mobile.kuryeapp.kuryeappv01.Classes.UserGot;
+import com.mobile.kuryeapp.kuryeappv01.Classes.UserSent;
+import com.mobile.kuryeapp.kuryeappv01.CustomAPIs.RestAPI;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class LoginActivity extends Activity {
-    EditText email,password,res_email,code,newpass;
-    Button login,cont,cont_code,cancel,cancel1,register,forpass;
-    String emailtxt,passwordtxt,email_res_txt,code_txt,npass_txt;
-    List<NameValuePair> params;
-    SharedPreferences pref;
-    Dialog reset;
-    ServerRequest sr;
-    private String android_id;
+    EditText email,password;
+    Button login,forpass;
+    String emailtxt,passwordtxt;
+    UserGot courier;
+    public static final String ENDPOINT = "http://192.168.2.134:3000";
+    //JSONObject userModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        sr = new ServerRequest();
 
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
         login = (Button)findViewById(R.id.loginbtn);
         forpass = (Button)findViewById(R.id.forgotpass);
-
-        pref = getSharedPreferences("AppPref", MODE_PRIVATE);
-
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -54,53 +44,41 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 emailtxt = email.getText().toString();
                 passwordtxt = password.getText().toString();
-                android_id = Secure.getString(getApplicationContext().getContentResolver(),
-                        Secure.ANDROID_ID);
-                params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("email", emailtxt));
+
                 final String hashedpass = Hashing.sha256()
                         .hashString(passwordtxt, Charsets.UTF_8)
                         .toString();
-                params.add(new BasicNameValuePair("password", hashedpass));
-                params.add(new BasicNameValuePair("android_id",android_id));
-                //maybe additional info
 
-//                ServerRequest sr = new ServerRequest();
-//                JSONObject json = sr.getJSON("http://kuryeapp.com/login",params);
-                  JSONObject json = new JSONObject();
-                //temporarily filling json
-                try {
-                    json.put("response", "Response of json");
-                    json.put("res",true);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                //end filling
+                UserSent userSent = new UserSent(emailtxt, hashedpass);
 
-                if(json != null){
-                try{
-                String jsonstr = json.getString("response");
-                    if(json.getBoolean("res")){
-                        //String token = json.getString("token");
-                        //String grav = json.getString("grav");
-                        //SharedPreferences.Editor edit = pref.edit();
-                        //Storing Data using SharedPreferences
-                        //edit.putString("token", token);
-                        //edit.putString("grav", grav);
-                        //edit.commit();
-                        Intent addressactivity = new Intent(LoginActivity.this,AddressPaymentActivity.class);
-
-                        startActivity(addressactivity);
-                        finish();
+                RestAdapter adapter = new RestAdapter.Builder()
+                    .setEndpoint(ENDPOINT)
+                    .build();
+                RestAPI api = adapter.create(RestAPI.class);
+                api.getUserModel(userSent, new Callback<UserGot>() {
+                    @Override
+                    public void success(UserGot user, Response response) {
+                        if(user.get_id() != null && user.getRole().equals("customer")) {
+                            //TODO change customer to courier
+                            courier = user;
+                            goToNext();
+                        }
                     }
 
-                        Toast.makeText(getApplication(),jsonstr,Toast.LENGTH_LONG).show();
-
-                }catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                }
+                    @Override
+                    public void failure(RetrofitError error) {
+                        //TODO do something here
+                        Log.d("fsad","failed");
+                    }
+                });
             }
         });
     }
+
+    public void goToNext(){
+        Intent intent = new Intent(this, AddressPaymentActivity.class);
+        intent.putExtra("access_token", courier.getAccess_token());
+        startActivity(intent);
+    }
+
 }
