@@ -25,6 +25,7 @@ public class LoginActivity extends Activity {
     Button login,forpass;
     String emailtxt,passwordtxt;
     UserGot courier;
+    //public static final String ENDPOINT = "http://localhost:3000";
     public static final String ENDPOINT = "https://cryptic-ridge-2951.herokuapp.com";
 
 

@@ -1,28 +1,49 @@
 package com.mobile.kuryeapp.kuryeappv01;
 
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URISyntaxException;
+
+public class MapsActivity extends FragmentActivity implements LocationListener {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private Double x,y;
+    private double x, y;
     private String addr;
-    private double myLat;
-    private double myLng;
-    private LatLng lastLatLng, destCoord;
-    private Marker userMarker;
+    private double myLat, myLng;
+    private LatLng destCoord, myLatLng = new LatLng(0,0);
     private LocationManager locMan;
+    private Marker userMarker;
+    private Socket mSocket;
+
+    {
+        try {
+            mSocket = IO.socket(LoginActivity.ENDPOINT);
+            Log.d("ENDPOINT: ", LoginActivity.ENDPOINT);
+        } catch (URISyntaxException e) {}
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +52,17 @@ public class MapsActivity extends FragmentActivity {
         x = this.getIntent().getDoubleExtra("x",0);
         y = this.getIntent().getDoubleExtra("y",0);
         addr = this.getIntent().getStringExtra("address");
+        destCoord = new LatLng(x,y);
 
+        locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
         setUpMapIfNeeded();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
         setUpMapIfNeeded();
     }
 
@@ -76,13 +101,50 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-
         CameraPosition cameraPosition1 = new CameraPosition.Builder().target(destCoord).zoom(14).build();
-        CameraPosition cameraPosition2 = new CameraPosition.Builder().target(lastLatLng).zoom(16).build();
-        mMap.setMyLocationEnabled(true);
-        mMap.addMarker(new MarkerOptions().position(lastLatLng).title("MY LOCATION")).showInfoWindow();
         mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
+//        CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
+        mMap.setMyLocationEnabled(true);
+
+        userMarker = mMap.addMarker(new MarkerOptions()
+                .position(myLatLng)
+                .title("MY LOCATION")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.usericon)));
+//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        myLat = location.getLatitude();
+        myLng = location.getLongitude();
+        myLatLng = new LatLng(myLat,myLng);
+        userMarker.setPosition(myLatLng);
+        CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
+        Toast.makeText(getApplicationContext(), myLat + " // " + myLng, Toast.LENGTH_LONG).show();
+        JSONObject coordJson = new JSONObject();
+        try {
+            coordJson.put("lat",myLat);
+            coordJson.put("lng",myLng);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        SocketIOmethods.sendCoords(mSocket,coordJson);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }

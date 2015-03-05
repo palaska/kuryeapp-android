@@ -37,7 +37,7 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     public String access_token,username;
     SharedPreferences mSharedPrefs;
 
-    public double myLat, myLng;
+    private double myLat, myLng;
     private LocationManager locMan;
 
     private Socket mSocket;
@@ -82,9 +82,9 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
 
         locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
-        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        myLat = lastLoc.getLatitude();
-        myLng = lastLoc.getLongitude();
+//        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        myLat = lastLoc.getLatitude();
+//        myLng = lastLoc.getLongitude();
         //startLocation();
 
         fragmentManager = getSupportFragmentManager();
@@ -103,7 +103,8 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
         mPrefsEditor.putString("saved_access_token",access_token);
         mPrefsEditor.putString("saved_username",username);
         Log.d("MY SAVED USERNAME", username);
-        mPrefsEditor.commit();
+        mPrefsEditor.apply();
+        //commit()
 
         PhoneCallListener phoneListener = new PhoneCallListener();
         TelephonyManager telephonyManager = (TelephonyManager) this
