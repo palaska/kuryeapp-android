@@ -1,13 +1,9 @@
 package com.mobile.kuryeapp.kuryeappv01;
 
-import android.content.Context;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
+
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,25 +12,17 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.mobile.kuryeapp.kuryeappv01.CustomAPIs.DirectionsAPI;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import retrofit.RestAdapter;
-
-
-public class MapsActivity extends FragmentActivity implements LocationListener {
+public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Double x,y;
     private String addr;
-    private LocationManager locMan;
     private double myLat;
     private double myLng;
     private LatLng lastLatLng, destCoord;
     private Marker userMarker;
+    private LocationManager locMan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +38,6 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
     @Override
     protected void onResume() {
         super.onResume();
-        //locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
         setUpMapIfNeeded();
     }
 
@@ -97,29 +84,5 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
-    }
-
-    @Override
-    public void onLocationChanged(Location location) {
-        myLat = location.getLatitude();
-        myLng = location.getLongitude();
-        lastLatLng = new LatLng(myLat, myLng);
-        setUpMap();
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
     }
 }
