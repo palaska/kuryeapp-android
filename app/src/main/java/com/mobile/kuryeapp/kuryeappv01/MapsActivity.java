@@ -1,6 +1,7 @@
 package com.mobile.kuryeapp.kuryeappv01;
 
 import android.content.Context;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -32,19 +33,24 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
     private LocationManager locMan;
     private double myLat;
     private double myLng;
+    private LatLng lastLatLng, destCoord;
     private Marker userMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        x = this.getIntent().getDoubleExtra("x",0);
+        y = this.getIntent().getDoubleExtra("y",0);
+        addr = this.getIntent().getStringExtra("address");
+
         setUpMapIfNeeded();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        //locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
         setUpMapIfNeeded();
     }
 
@@ -83,37 +89,11 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        x = this.getIntent().getDoubleExtra("x",0);
-        y = this.getIntent().getDoubleExtra("y",0);
-        addr = this.getIntent().getStringExtra("address");
 
-        locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
-        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        myLat = lastLoc.getLatitude();
-        myLng = lastLoc.getLongitude();
-        LatLng lastLatLng = new LatLng(myLat, myLng);
-
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setEndpoint("http://maps.googleapis.com")
-                .build();
-
-        DirectionsAPI service = restAdapter.create(DirectionsAPI.class);
-        JSONObject response = service.getResponse(myLat,myLng,x,y);
-
-        try {
-            JSONArray routeArray = response.getJSONArray("routes");
-            JSONObject routeObject = routeArray.getJSONObject(0);
-            String polyline = routeObject.getJSONObject("overview_polyline").get("points").toString();
-            Log.d("polyline",polyline);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-//        LatLng myCoord = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
-        LatLng destCoord = new LatLng(x ,y);
         CameraPosition cameraPosition1 = new CameraPosition.Builder().target(destCoord).zoom(14).build();
         CameraPosition cameraPosition2 = new CameraPosition.Builder().target(lastLatLng).zoom(16).build();
         mMap.setMyLocationEnabled(true);
+        mMap.addMarker(new MarkerOptions().position(lastLatLng).title("MY LOCATION")).showInfoWindow();
         mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
@@ -123,6 +103,9 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
     public void onLocationChanged(Location location) {
         myLat = location.getLatitude();
         myLng = location.getLongitude();
+        lastLatLng = new LatLng(myLat, myLng);
+        setUpMap();
+
     }
 
     @Override

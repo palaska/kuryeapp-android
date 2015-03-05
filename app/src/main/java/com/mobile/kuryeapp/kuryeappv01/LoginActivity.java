@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
@@ -24,8 +25,8 @@ public class LoginActivity extends Activity {
     Button login,forpass;
     String emailtxt,passwordtxt;
     UserGot courier;
-    public static final String ENDPOINT = "http://192.168.2.134:3000";
-    //JSONObject userModel;
+    public static final String ENDPOINT = "https://cryptic-ridge-2951.herokuapp.com";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,11 @@ public class LoginActivity extends Activity {
                 api.getUserModel(userSent, new Callback<UserGot>() {
                     @Override
                     public void success(UserGot user, Response response) {
-                        if(user.get_id() != null && user.getRole().equals("customer")) {
-                            //TODO change customer to courier
+                        if(user.get_id() != null && user.getRole().equals("admin")) {
+                            //TODO change admin to courier
+                            Log.d("fsad","success");
                             courier = user;
+                            courier.setDeliverycnt(5);
                             goToNext();
                         }
                     }
@@ -69,6 +72,7 @@ public class LoginActivity extends Activity {
                     public void failure(RetrofitError error) {
                         //TODO do something here
                         Log.d("fsad","failed");
+                        Toast.makeText(getApplicationContext(), "Yanlış kullanıcı adı veya şifre.", Toast.LENGTH_LONG).show();
                     }
                 });
             }
@@ -78,6 +82,7 @@ public class LoginActivity extends Activity {
     public void goToNext(){
         Intent intent = new Intent(this, AddressPaymentActivity.class);
         intent.putExtra("access_token", courier.getAccess_token());
+        intent.putExtra("username",courier.getUsername());
         startActivity(intent);
     }
 

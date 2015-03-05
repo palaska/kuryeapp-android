@@ -29,4 +29,8 @@ dependencies {
     compile files('src/main/libs/guava-18.0.jar')
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.google.maps.android:android-maps-utils:0.3.2'
+    compile 'com.github.nkzawa:socket.io-client:0.3.0'
+    compile ('io.nlopez.smartlocation:library:3.0.3') {
+        transitive = false
+    }
 }

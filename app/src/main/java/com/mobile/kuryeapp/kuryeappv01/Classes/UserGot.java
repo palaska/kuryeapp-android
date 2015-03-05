@@ -10,8 +10,12 @@ public class UserGot {
     int __v;
     String role;
     String phone;
+    int deliverycnt;
 
-    public UserGot(String _id, int index, String email, String username, String access_token, String access_secret, int __v,String role,String phone) {
+    public UserGot(String _id, int index, String email,
+                   String username, String access_token,
+                   String access_secret, int __v,String role,
+                   String phone, int deliverycnt) {
         this._id = _id;
         this.index = index;
         this.email = email;
@@ -21,6 +25,16 @@ public class UserGot {
         this.__v = __v;
         this.role = role;
         this.phone = phone;
+        this.deliverycnt = deliverycnt;
+
+    }
+
+    public void setDeliverycnt(int deliverycnt) {
+        this.deliverycnt = deliverycnt;
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getRole() {

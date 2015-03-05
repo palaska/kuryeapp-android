@@ -11,7 +11,10 @@ public class customJob {
     String type;
     String phone;
 
-    public customJob(String _id, int index,String name, String address, String addressdesc, customLocation location, int __v, String type, String phone) {
+    public customJob(String _id, int index,String name,
+                     String address, String addressdesc,
+                     customLocation location, int __v,
+                     String type, String phone) {
         this._id = _id;
         this.index = index;
         this.name = name;
@@ -31,19 +34,12 @@ public class customJob {
         return address;
     }
 
-    public String getAddressdesc() {
-        return addressdesc;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public String getType() {
-        return type;
     }
 
     public customLocation getLocation() {
         return location;
     }
+
 }
