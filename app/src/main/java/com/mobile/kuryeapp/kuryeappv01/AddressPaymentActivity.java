@@ -80,7 +80,7 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
         mSocket.connect();
 
         locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
 //        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 //        myLat = lastLoc.getLatitude();
 //        myLng = lastLoc.getLongitude();
@@ -122,7 +122,7 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     @Override
     protected void onStart() {
         super.onStart();
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
     }
 
     @Override

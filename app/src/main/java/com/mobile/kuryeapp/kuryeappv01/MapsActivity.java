@@ -54,14 +54,14 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         destCoord = new LatLng(x,y);
 
         locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
         setUpMapIfNeeded();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 500, 1, this);
+        locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
         setUpMapIfNeeded();
     }
 
@@ -118,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         myLatLng = new LatLng(myLat,myLng);
         //userMarker.setPosition(myLatLng);
         CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 4000, null);
         JSONObject coordJson = new JSONObject();
         try {
             coordJson.put("lat",myLat);

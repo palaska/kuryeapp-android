@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         bootstrapthumbnail:bt_width="380dp"
-        bootstrapthumbnail:bt_height="160dp"
+        bootstrapthumbnail:bt_height="140dp"
         bootstrapthumbnail:bt_image="@drawable/logo"
         bootstrapthumbnail:bt_roundedCorners="true"
         bootstrapthumbnail:bt_inside_padding="5dp"
@@ -40,7 +40,7 @@
         android:id="@+id/password"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="25dp"
         android:hint="******"
         android:textAlignment="center"
         bootstrap:be_roundedCorners="true"
@@ -88,7 +88,5 @@
         android:layout_marginBottom="6dp"
         android:textSize="26sp"
         />
-
-
 
 </LinearLayout>
