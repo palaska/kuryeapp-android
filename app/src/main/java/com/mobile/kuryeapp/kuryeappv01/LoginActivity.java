@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.mobile.kuryeapp.kuryeappv01.Classes.UserGot;
@@ -21,9 +21,8 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class LoginActivity extends Activity {
-    EditText email,password;
-    Button login,forpass;
     String emailtxt,passwordtxt;
+    EditText email,password;
     UserGot courier;
     //public static final String ENDPOINT = "http://localhost:3000";
     public static final String ENDPOINT = "https://cryptic-ridge-2951.herokuapp.com";
@@ -36,8 +35,8 @@ public class LoginActivity extends Activity {
 
         email = (EditText)findViewById(R.id.email);
         password = (EditText)findViewById(R.id.password);
-        login = (Button)findViewById(R.id.loginbtn);
-        forpass = (Button)findViewById(R.id.forgotpass);
+        BootstrapButton login = (BootstrapButton)findViewById(R.id.loginbtn);
+        BootstrapButton forpass = (BootstrapButton)findViewById(R.id.forgotpass);
 
         login.setOnClickListener(new View.OnClickListener() {
 

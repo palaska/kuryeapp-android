@@ -30,11 +30,11 @@
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/joda-time-2.4-b10ddfa335724f5c20c865e82dcdc53be45d494e.jar" />
     </item>
     <item
-        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/io.nlopez.smartlocation/library/3.0.3/classes.jar"
+        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="9e12337c9e97c661ebb1b417dfd6b4302b284137">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-835db5ea7c449952df1cd0b89b8e67aa15a07e2a.jar" />
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-1c87cda6fd63585162950cd8413115f4bc013199.jar" />
     </item>
     <item
         jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/org.java-websocket/Java-WebSocket/1.3.0/db2658f013fb163de4a99274c2eb9e17efe535d2/Java-WebSocket-1.3.0.jar"
@@ -44,11 +44,11 @@
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/Java-WebSocket-1.3.0-cfcc32c90d9b8b9792a196ab39481e44f93ece97.jar" />
     </item>
     <item
-        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jar="/Users/barispalaska/Documents/eclipse/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-1c87cda6fd63585162950cd8413115f4bc013199.jar" />
+        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-723fc0c35cc41ff22d45ed92b95d7cd49ef2e9f6.jar" />
     </item>
     <item
         jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit/retrofit/1.9.0/a681c044244d9fc375198588297a39ba78028423/retrofit-1.9.0.jar"
@@ -56,13 +56,6 @@
         revision="21.1.2"
         sha1="a681c044244d9fc375198588297a39ba78028423">
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/retrofit-1.9.0-860ebf3d00c17ee5e80128bc3c8197899f1b717e.jar" />
-    </item>
-    <item
-        jar="/Users/barispalaska/Documents/eclipse/adt-bundle-mac-x86_64-20131030/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-723fc0c35cc41ff22d45ed92b95d7cd49ef2e9f6.jar" />
     </item>
     <item
         jar="/Users/barispalaska/.gradle/caches/modules-2/files-2.1/com.google.maps/google-maps-services/0.1.5/2259657970fd09dd941ffb88c059bc3bbe09b17f/google-maps-services-0.1.5.jar"
@@ -126,6 +119,13 @@
         revision="21.1.2"
         sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
         <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/gson-2.3.1-d532c10c4d59b50e530dc4ebee667ec56c3123cf.jar" />
+    </item>
+    <item
+        jar="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/exploded-aar/com.beardedhen/androidbootstrap/1.1.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="99d047d8e4c7b63b6566867bf00fcbdb8c306c8e">
+        <dex dex="/Users/barispalaska/Documents/workspace/Kuryeapp/android-app/app/build/intermediates/pre-dexed/debug/classes-e9223011c38bb6652e6e725f2f42b14aafcf64a9.jar" />
     </item>
 
 </items>

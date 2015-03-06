@@ -4,4 +4,6 @@
     android:layout_height="match_parent"
     android:id="@+id/map"
     tools:context="com.mobile.kuryeapp.kuryeappv01.MapsActivity"
-    android:name="com.google.android.gms.maps.SupportMapFragment" />
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    />
+

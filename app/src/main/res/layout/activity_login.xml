@@ -1,70 +1,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bootstrapthumbnail="http://schemas.android.com/apk/res-auto"
+    xmlns:bootstrap="http://schemas.android.com/apk/res-auto"
+    xmlns:fontawesometext="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#e9e8dd"
-    tools:context=".LoginActivity"
-    android:weightSum="1">
+    tools:context=".LoginActivity">
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:background="#ffffff"
-        android:layout_gravity="center"
-        android:src="@drawable/logo"
-        android:layout_weight="0.40"
-        android:layout_marginTop="10dp" />
-
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:id="@+id/email"
-        android:hint="ornekmail@kuryeapp.com"/>
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="300dp"
-        android:layout_gravity="center"
-        android:layout_height="80dp"
-        android:inputType="textPassword"
-        android:hint="******"/>
-
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        android:id="@+id/loginbtn"
-        android:background="@drawable/btn_back"
-        android:textColor="#ffffff"
-        android:textAlignment="center"
-        android:text="GIRIS YAP"
-        android:textSize="22dp"
-        android:layout_marginTop="10dp" />
-    <LinearLayout
+    <com.beardedhen.androidbootstrap.BootstrapThumbnail
+        android:id="@+id/thumbnailTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        bootstrapthumbnail:bt_width="380dp"
+        bootstrapthumbnail:bt_height="160dp"
+        bootstrapthumbnail:bt_image="@drawable/logo"
+        bootstrapthumbnail:bt_roundedCorners="true"
+        bootstrapthumbnail:bt_inside_padding="5dp"
         android:layout_gravity="center"
-        android:orientation="horizontal" >
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"/>
 
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/email"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="35dp"
+        android:hint="@string/emailhint"
+        android:textAlignment="center"
+        bootstrap:be_roundedCorners="true"
+        android:gravity="center"
+        android:textSize="16sp"
+        bootstrap:be_state="default"
+        android:layout_gravity="center" />
 
-        <Button
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:id="@+id/forgotpass"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/btn_red_back"
-            android:textColor="#ffffff"
-            android:textAlignment="center"
-            android:text="SIFREMI UNUTTUM"
-            android:layout_marginTop="20dp" />
+    <com.beardedhen.androidbootstrap.BootstrapEditText
+        android:id="@+id/password"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="******"
+        android:textAlignment="center"
+        bootstrap:be_roundedCorners="true"
+        android:gravity="center"
+        android:textSize="16sp"
+        bootstrap:be_state="default"
+        android:layout_gravity="center"
+        android:inputType="textPassword"/>
 
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/loginbtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/loginbtntext"
+        bootstrap:bb_icon_right="fa-angle-double-up"
+        bootstrap:bb_type="success"
+        bootstrap:bb_roundedCorners="true"
+        bootstrap:bb_size="default"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        />
 
-    </LinearLayout>
+    <com.beardedhen.androidbootstrap.BootstrapButton
+        android:id="@+id/forgotpass"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/forgotpasswordbtntext"
+        bootstrap:bb_icon_right="fa-info-circle"
+        bootstrap:bb_type="danger"
+        bootstrap:bb_roundedCorners="true"
+        bootstrap:bb_size="default"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:enabled="false" />
+
+    <com.beardedhen.androidbootstrap.FontAwesomeText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        fontawesometext:fa_icon="fa-motorcycle"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="6dp"
+        android:textSize="26sp"
+        />
+
 
 
 </LinearLayout>

@@ -8,5 +8,39 @@
     <string name="title_activity_maps">Map</string>
 
 
+    <!--login activity-->
+    <string name="emailhint">Kullanıcı adı/E-mail</string>
+    <string name="loginbtntext">Giriş yap</string>
+    <string name="forgotpasswordbtntext">Şifremi unuttum</string>
+
+
+    <!--info fragment-->
+    <string name="usernametitle">Kullanıcı adı:</string>
+    <string name="nousername">--</string>
+    <string name="deliverycnttitle">Bugün tamamlanan görev sayısı: </string>
+    <string name="moneyearnedtitle">Bugün kazanılan miktar: </string>
+
+
+    <!--address fragment-->
+    <string name="jobtypetitle">Görev tipi:</string>
+    <string name="destinationtitle">Hedef</string>
+    <string name="noaddress">Güncel adres bilgisi yok.</string>
+    <string name="addressdesctitle">Adres açıklaması</string>
+    <string name="noaddressdesc">Güncel adres açıklaması yok.</string>
+    <string name="gotomapbtntext">Haritaya git</string>
+    <string name="callcustomerbtntext">Müşteriyi ara</string>
+
+
+    <!--payment fragment-->
+    <string name="order_price_title">Sipariş tutarı:</string>
+    <string name="order_price">--</string>
+    <string name="pay_cash_button_text">Nakit Ödeme</string>
+    <string name="pay_with_payanywhere_text">PayAnywhere™ ile ödeyin</string>
+    <string name="read_card_button_text">Kart Okutunuz</string>
+    <string name="pay_by_entering_cardno">Kredi kartı numarası girerek ödeyin</string>
+    <string name="cardno_hint">Kart numarası giriniz.</string>
+    <string name="expdate_hint">AA / YY</string>
+    <string name="expdate_text">Son kullanım tarihi</string>
+    <string name="completepayment">Ödemeyi tamamlayın</string>
 
 </resources>

@@ -18,7 +18,7 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = (RelativeLayout) inflater.inflate(R.layout.tab_info, container, false);
+        View view = (LinearLayout) inflater.inflate(R.layout.tab_info, container, false);
         TextView username = (TextView) view.findViewById(R.id.username);
 
         SharedPreferences preferences = this.getActivity().getSharedPreferences("xmlFile", Context.MODE_PRIVATE);

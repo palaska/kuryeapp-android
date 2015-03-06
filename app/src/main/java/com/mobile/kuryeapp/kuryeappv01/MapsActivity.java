@@ -8,7 +8,6 @@ import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -104,14 +103,12 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         CameraPosition cameraPosition1 = new CameraPosition.Builder().target(destCoord).zoom(14).build();
         mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
-//        CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
         mMap.setMyLocationEnabled(true);
 
-        userMarker = mMap.addMarker(new MarkerOptions()
-                .position(myLatLng)
-                .title("MY LOCATION")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.usericon)));
-//        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
+//        userMarker = mMap.addMarker(new MarkerOptions()
+//                .position(myLatLng)
+//                .title("MY LOCATION")
+//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.redusericon)));
     }
 
     @Override
@@ -119,10 +116,9 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         myLat = location.getLatitude();
         myLng = location.getLongitude();
         myLatLng = new LatLng(myLat,myLng);
-        userMarker.setPosition(myLatLng);
+        //userMarker.setPosition(myLatLng);
         CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 6000, null);
-        Toast.makeText(getApplicationContext(), myLat + " // " + myLng, Toast.LENGTH_LONG).show();
         JSONObject coordJson = new JSONObject();
         try {
             coordJson.put("lat",myLat);

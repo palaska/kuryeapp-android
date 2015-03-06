@@ -96,10 +96,11 @@
     <orderEntry type="library" exported="" name="appcompat-v7-21.0.3" level="project" />
     <orderEntry type="library" exported="" name="socket.io-client-0.3.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
-    <orderEntry type="library" exported="" name="google-maps-services-0.1.5" level="project" />
     <orderEntry type="library" exported="" name="okhttp-2.0.0" level="project" />
-    <orderEntry type="library" exported="" name="engine.io-client-0.3.1" level="project" />
+    <orderEntry type="library" exported="" name="google-maps-services-0.1.5" level="project" />
+    <orderEntry type="library" exported="" name="androidbootstrap-1.1.0" level="project" />
     <orderEntry type="library" exported="" name="joda-time-2.4" level="project" />
+    <orderEntry type="library" exported="" name="engine.io-client-0.3.1" level="project" />
     <orderEntry type="library" exported="" name="android-maps-utils-0.3.2" level="project" />
   </component>
 </module>

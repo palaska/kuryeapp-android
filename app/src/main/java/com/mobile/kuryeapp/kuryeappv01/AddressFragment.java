@@ -8,11 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.mobile.kuryeapp.kuryeappv01.Classes.customJob;
 import com.mobile.kuryeapp.kuryeappv01.Classes.customLocation;
 
@@ -24,10 +23,8 @@ public class AddressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = (LinearLayout) inflater.inflate(R.layout.tab_address, container, false);
-        Button gotomapbtn = (Button) view.findViewById(R.id.gotomapbtn);
-        Button callbtn = (Button) view.findViewById(R.id.callbtn);
-        TextView address = (TextView) view.findViewById(R.id.addressText);
-        TextView addressdesc = (TextView) view.findViewById(R.id.addressdesc);
+        BootstrapButton gotomapbtn = (BootstrapButton) view.findViewById(R.id.gotomapbtn);
+        BootstrapButton callbtn = (BootstrapButton) view.findViewById(R.id.callbtn);
 
 //////////////////////////////////////////////////////////////////////////////////////////////
         // incoming job object

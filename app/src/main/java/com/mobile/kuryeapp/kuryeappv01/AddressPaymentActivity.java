@@ -44,7 +44,6 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     {
         try {
             mSocket = IO.socket(LoginActivity.ENDPOINT);
-            Log.d("ENDPOINT: ",LoginActivity.ENDPOINT);
         } catch (URISyntaxException e) {}
     }
 
@@ -102,7 +101,6 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
         SharedPreferences.Editor mPrefsEditor = mSharedPrefs.edit();
         mPrefsEditor.putString("saved_access_token",access_token);
         mPrefsEditor.putString("saved_username",username);
-        Log.d("MY SAVED USERNAME", username);
         mPrefsEditor.apply();
         //commit()
 
@@ -138,7 +136,7 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     public void onLocationChanged(Location location) {
         myLat = location.getLatitude();
         myLng = location.getLongitude();
-        Toast.makeText(getApplicationContext(), myLat+" // "+myLng, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), myLat+" // "+myLng, Toast.LENGTH_LONG).show();
         JSONObject coordJson = new JSONObject();
         try {
             coordJson.put("lat",myLat);
