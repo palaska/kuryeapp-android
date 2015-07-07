@@ -2,6 +2,7 @@ package com.mobile.kuryeapp.kuryeappv01;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,32 +15,45 @@ import com.github.nkzawa.socketio.client.Socket;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.common.collect.Iterables;
+import com.google.maps.android.PolyUtil;
+import com.mobile.kuryeapp.kuryeappv01.api.ApiClient;
+import com.mobile.kuryeapp.kuryeappv01.api.Directions;
+import com.mobile.kuryeapp.kuryeappv01.api.Leg;
+import com.mobile.kuryeapp.kuryeappv01.api.MyPolyline;
+import com.mobile.kuryeapp.kuryeappv01.api.Steps;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MapsActivity extends FragmentActivity implements LocationListener {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private double x, y;
-    private String addr;
+    private String addr, name;
     private double myLat, myLng;
     private LatLng destCoord, myLatLng = new LatLng(0,0);
     private LocationManager locMan;
-    private Marker userMarker;
     private Socket mSocket;
+    private List<Leg> mLegs;
+    private Iterable<LatLng> decodedPoly;
+    private Directions mDir;
 
     {
         try {
-            mSocket = IO.socket(LoginActivity.ENDPOINT);
-            Log.d("ENDPOINT: ", LoginActivity.ENDPOINT);
+            mSocket = IO.socket(ApiClient.ENDPOINT);
+            Log.d("ENDPOINT: ", ApiClient.ENDPOINT);
         } catch (URISyntaxException e) {}
     }
 
@@ -50,7 +64,8 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         setContentView(R.layout.activity_maps);
         x = this.getIntent().getDoubleExtra("x",0);
         y = this.getIntent().getDoubleExtra("y",0);
-        addr = this.getIntent().getStringExtra("address");
+        addr = this.getIntent().getStringExtra("description");
+        name = this.getIntent().getStringExtra("name");
         destCoord = new LatLng(x,y);
 
         locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -101,14 +116,36 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
      */
     private void setUpMap() {
         CameraPosition cameraPosition1 = new CameraPosition.Builder().target(destCoord).zoom(14).build();
-        mMap.addMarker(new MarkerOptions().position(destCoord).title("Kahve Diyari").snippet(addr)).showInfoWindow();
+        mMap.addMarker(new MarkerOptions().position(destCoord).title(name).snippet(addr)).showInfoWindow();
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition1));
         mMap.setMyLocationEnabled(true);
 
-//        userMarker = mMap.addMarker(new MarkerOptions()
-//                .position(myLatLng)
-//                .title("MY LOCATION")
-//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.redusericon)));
+        ApiClient.getDirectionsApiClient().getDirections("Bursa",
+                "Istanbul",true, new Callback<Directions>(){
+
+            @Override
+            public void success(Directions directions, Response response) {
+                mDir = directions;
+                mLegs= mDir.getRoutes().get(0).getLegs();
+                List<Steps> steps = mLegs.get(0).getSteps();
+                decodedPoly = PolyUtil.decode(steps.get(0).getMyPolyline().getPoints());
+                for(int j=1,y=steps.size();j<y;j++){
+                        MyPolyline myPolyline = steps.get(j).getMyPolyline();
+                        Iterable<LatLng> tempDecodedPoly = PolyUtil.decode(myPolyline.getPoints());
+                        decodedPoly = Iterables.concat(decodedPoly,tempDecodedPoly);
+                    }
+                mMap.addPolyline(new PolylineOptions().addAll(decodedPoly).width(5).color(Color.RED));
+                //Log.d("DURATION:",directions.getRoutes().get(0).getLegs().get(0).getDuration().getValue()+"");
+                //Log.d("DURATION:",directions.getRoutes().get(0).getLegs().get(0).getDuration().getText());
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("failure directions","");
+            }
+        });
+
     }
 
     @Override
@@ -116,9 +153,11 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
         myLat = location.getLatitude();
         myLng = location.getLongitude();
         myLatLng = new LatLng(myLat,myLng);
-        //userMarker.setPosition(myLatLng);
         CameraPosition cameraPosition2 = new CameraPosition.Builder().target(myLatLng).zoom(16).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition2), 4000, null);
+
+        //TODO remove old polyline and add new one
+
         JSONObject coordJson = new JSONObject();
         try {
             coordJson.put("lat",myLat);
@@ -127,6 +166,7 @@ public class MapsActivity extends FragmentActivity implements LocationListener {
             e.printStackTrace();
         }
         SocketIOmethods.sendCoords(mSocket,coordJson);
+        Log.d("onLOCATIONCHANGED","asfdfads");
     }
 
     @Override

@@ -29,12 +29,17 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="35dp"
         android:hint="@string/emailhint"
+        android:selectAllOnFocus="true"
         android:textAlignment="center"
         bootstrap:be_roundedCorners="true"
         android:gravity="center"
         android:textSize="16sp"
         bootstrap:be_state="default"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/password"
@@ -42,13 +47,40 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
         android:hint="******"
+        android:selectAllOnFocus="true"
         android:textAlignment="center"
         bootstrap:be_roundedCorners="true"
         android:gravity="center"
         android:textSize="16sp"
         bootstrap:be_state="default"
         android:layout_gravity="center"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
+    <LinearLayout
+        android:id="@+id/loadingwheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:visibility="invisible">
+    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:cpb_color="#FFee44"
+        app:cpb_colors="@array/colors"
+        app:cpb_rotation_speed="1.0"
+        app:cpb_sweep_speed="1.0"
+        app:cpb_stroke_width="4dp"
+        app:cpb_min_sweep_angle="10"
+        app:cpb_max_sweep_angle="300" />
+    </LinearLayout>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/loginbtn"

@@ -22,7 +22,7 @@ public class InfoFragment extends Fragment {
         TextView username = (TextView) view.findViewById(R.id.username);
 
         SharedPreferences preferences = this.getActivity().getSharedPreferences("xmlFile", Context.MODE_PRIVATE);
-        String user_name = preferences.getString("saved_username","DEFAULT");
+        String user_name = preferences.getString("saved_username","--");
         username.setText(user_name);
 
         return view;

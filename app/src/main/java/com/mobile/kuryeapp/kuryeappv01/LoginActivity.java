@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.mobile.kuryeapp.kuryeappv01.Classes.UserGot;
 import com.mobile.kuryeapp.kuryeappv01.Classes.UserSent;
-import com.mobile.kuryeapp.kuryeappv01.CustomAPIs.RestAPI;
+import com.mobile.kuryeapp.kuryeappv01.api.ApiClient;
 
 import retrofit.Callback;
-import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -25,7 +27,6 @@ public class LoginActivity extends Activity {
     EditText email,password;
     UserGot courier;
     //public static final String ENDPOINT = "http://localhost:3000";
-    public static final String ENDPOINT = "https://cryptic-ridge-2951.herokuapp.com";
 
 
     @Override
@@ -37,6 +38,7 @@ public class LoginActivity extends Activity {
         password = (EditText)findViewById(R.id.password);
         BootstrapButton login = (BootstrapButton)findViewById(R.id.loginbtn);
         BootstrapButton forpass = (BootstrapButton)findViewById(R.id.forgotpass);
+        final LinearLayout loadingwheel = (LinearLayout) findViewById(R.id.loadingwheel);
 
         login.setOnClickListener(new View.OnClickListener() {
 
@@ -45,21 +47,20 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 emailtxt = email.getText().toString();
                 passwordtxt = password.getText().toString();
-
+                loadingwheel.setVisibility(View.VISIBLE);
+                email.setEnabled(false);
+                password.setEnabled(false);
                 final String hashedpass = Hashing.sha256()
                         .hashString(passwordtxt, Charsets.UTF_8)
                         .toString();
 
                 UserSent userSent = new UserSent(emailtxt, hashedpass);
 
-                RestAdapter adapter = new RestAdapter.Builder()
-                    .setEndpoint(ENDPOINT)
-                    .build();
-                RestAPI api = adapter.create(RestAPI.class);
-                api.getUserModel(userSent, new Callback<UserGot>() {
+                ApiClient.getLoginApiClient().getUserModel(userSent, new Callback<UserGot>() {
                     @Override
-                    public void success(UserGot user, Response response) {
-                        if(user.get_id() != null && user.getRole().equals("admin")) {
+                    public void success(UserGot user , Response response) {
+                        if(user.get_id() != null ){
+                            //&& user.getRole().equals("admin")
                             //TODO change admin to courier
                             Log.d("fsad","success");
                             courier = user;
@@ -71,8 +72,16 @@ public class LoginActivity extends Activity {
                     @Override
                     public void failure(RetrofitError error) {
                         //TODO do something here
-                        Log.d("fsad","failed");
-                        Toast.makeText(getApplicationContext(), "Yanlış kullanıcı adı veya şifre.", Toast.LENGTH_LONG).show();
+                        Log.d("fsad", "failed");
+                        SuperToast superToast = new SuperToast(getApplicationContext(),
+                                Style.getStyle(Style.RED, SuperToast.Animations.SCALE));
+                        superToast.setDuration(SuperToast.Duration.LONG);
+                        superToast.setText("Yanlış kullanıcı adı-şifre kombinasyonu!");
+                        superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                        superToast.show();
+                        loadingwheel.setVisibility(View.INVISIBLE);
+                        email.setEnabled(true);
+                        password.setEnabled(true);
                     }
                 });
             }

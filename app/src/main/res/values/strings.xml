@@ -23,12 +23,15 @@
 
     <!--address fragment-->
     <string name="jobtypetitle">Görev tipi:</string>
+    <string name="nojobtype">Aktif görev yok.</string>
     <string name="destinationtitle">Hedef</string>
+    <string name="neighborhoodtitle">Mahalle:</string>
     <string name="noaddress">Güncel adres bilgisi yok.</string>
     <string name="addressdesctitle">Adres açıklaması</string>
     <string name="noaddressdesc">Güncel adres açıklaması yok.</string>
     <string name="gotomapbtntext">Haritaya git</string>
     <string name="callcustomerbtntext">Müşteriyi ara</string>
+    <string name="chronometer_initial_format">Initial format: %s</string>
 
 
     <!--payment fragment-->
@@ -42,5 +45,7 @@
     <string name="expdate_hint">AA / YY</string>
     <string name="expdate_text">Son kullanım tarihi</string>
     <string name="completepayment">Ödemeyi tamamlayın</string>
+    <string name="title_activity_maps_activity32123">Map</string>
+    <string name="title_activity_maps_activitydasdsdsads">Map</string>
 
 </resources>

@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Paket alma"
+            android:text="@string/nojobtype"
             android:id="@+id/jobtype"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -51,7 +51,10 @@
         android:background="#c0c0c0"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
-
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,26 +65,77 @@
         android:textStyle="bold"
         android:layout_marginBottom="5dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:gravity="start"/>
+
+    <com.mobile.kuryeapp.kuryeappv01.Classes.CountdownChronometer
+        android:id="@+id/chronometer"
+        android:format="@string/chronometer_initial_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:paddingBottom="20dip"
+        android:paddingTop="20dip"
+        android:paddingLeft="20dp"
+        android:gravity="center"
+        />
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e9e8dd"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/neighborhoodtitle"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="-"
+            android:id="@+id/neighborhood"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:gravity="start"/>
+        <!--android:text="N/A"-->
+    </LinearLayout>
     <com.beardedhen.androidbootstrap.BootstrapEditText
-        android:id="@+id/cardno"
+        android:id="@+id/addressedittext"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:textAlignment="center"
         bootstrap:be_roundedCorners="true"
-        android:text="Akaygen Sokak No:2 Küçükbebek Hisarüstü Sarıyer / İstanbul"
+        android:hint="@string/noaddress"
         android:gravity="center"
         android:textSize="16sp"
         bootstrap:be_state="default"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:textColor="#000000"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:editable="false"
-        android:clickable="false"/>
-        <!--android:hint="@string/noaddress"-->
+        android:clickable="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
+
 
     <View
         android:layout_width="fill_parent"
@@ -110,17 +164,21 @@
         android:layout_margin="10dp"
         android:textAlignment="center"
         bootstrap:be_roundedCorners="true"
-        android:text="Lorem Ipsum dolor sit amet, consectetuer adipiscingelit. Duis tellus. Donec ante dolor, iaculis nec, gravidaac, cursus in, eros. Mauris vestibulum, felis et egestasullamcorper, purus nibh vehicula sem, eu egestas antenisl non justo."
-        android:gravity="center"
+        android:hint="@string/noaddressdesc"
+        android:gravity="center_horizontal"
         android:textSize="16sp"
         bootstrap:be_state="default"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:textColor="#000000"
         android:inputType="none"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:editable="false"
-        android:clickable="false"/>
+        android:clickable="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"/>
 
     <View
         android:layout_width="fill_parent"
@@ -143,7 +201,7 @@
         bootstrap:bb_roundedCorners="true"
         bootstrap:bb_size="large"
         android:textSize="16sp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         />
 
     <com.beardedhen.androidbootstrap.BootstrapButton
@@ -156,7 +214,7 @@
         bootstrap:bb_roundedCorners="true"
         bootstrap:bb_size="large"
         android:textSize="16sp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         />
 
     <com.beardedhen.androidbootstrap.FontAwesomeText
@@ -164,7 +222,7 @@
         android:layout_height="wrap_content"
         fontawesometext:fa_icon="fa-motorcycle"
         android:textAlignment="center"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="15dp"
         android:foregroundGravity="bottom"

@@ -2,7 +2,6 @@ package com.mobile.kuryeapp.kuryeappv01;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import android.location.Location;
@@ -15,13 +14,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 
+import com.beardedhen.androidbootstrap.BootstrapEditText;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.mobile.kuryeapp.kuryeappv01.Classes.CountdownChronometer;
+import com.mobile.kuryeapp.kuryeappv01.api.ApiClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,42 +38,70 @@ import kuryeapp.tabsswipe.adapter.TabsPagerAdapter;
 
 public class AddressPaymentActivity extends ActionBarActivity implements LocationListener {
 
+    TextView jobtype, neighborhood;
+    BootstrapEditText addressedittext, addressdesc;
+    public static JSONObject data;
     public static FragmentManager fragmentManager;
-    public String access_token,username;
+    public String access_token,username,jobstr;
+    CountdownChronometer countdown;
     SharedPreferences mSharedPrefs;
 
     private double myLat, myLng;
     private LocationManager locMan;
 
-    private Socket mSocket;
+
+    public Socket mSocket;
     {
         try {
-            mSocket = IO.socket(LoginActivity.ENDPOINT);
+            mSocket = IO.socket(ApiClient.ENDPOINT);
         } catch (URISyntaxException e) {}
     }
 
     Activity that = this;
 
-    private Emitter.Listener onNewMessage = new Emitter.Listener() {
+    public Emitter.Listener onNewMessage = new Emitter.Listener() {
         @Override
         public void call(final Object... args) {
             that.runOnUiThread(new Runnable() {
 
                 @Override
                 public void run() {
-                    JSONObject data = (JSONObject) args[0];
-                    String world;
+                    data = (JSONObject) args[0];
                     try {
-                        world = data.getString("hello");
+                        Log.d("TYPE: ",data.getString("type"));
+                        jobstr = data.getString("type");
+                        if(jobstr != null) {
+                            SuperToast superToast = new SuperToast(getApplicationContext(),
+                            Style.getStyle(Style.ORANGE, SuperToast.Animations.FLYIN));
+                            superToast.setDuration(SuperToast.Duration.EXTRA_LONG);
+                            superToast.setIcon(SuperToast.Icon.Dark.INFO, SuperToast.IconPosition.LEFT);
+                            Log.d("dataToString",data.toString());
+                            if(jobstr.equals("pickup")){
+                                superToast.setText("Yeni 'Paket Alma' görevi!");
+                                ((TextView)findViewById(R.id.jobtype)).setText("Paket Alma");
+                            } else {
+                                ((TextView)findViewById(R.id.jobtype)).setText("Sipariş Teslimi");
+                                superToast.setText("Yeni 'Sipariş Teslimi' görevi!");
+                            }
+                            superToast.show();
+                            JSONObject dest = data.getJSONObject("destination");
+                            ((BootstrapEditText)findViewById(R.id.addressedittext)).setText(dest.getString("description"));
+                            ((BootstrapEditText)findViewById(R.id.addressdesc)).setText(dest.getString("depiction"));
+                            ((TextView)findViewById(R.id.neighborhood)).setText(dest.getString("neighborhood"));
+                            ((CountdownChronometer)findViewById(R.id.chronometer)).setBase(System.currentTimeMillis() + data.getInt("due"));
+                            ((CountdownChronometer)findViewById(R.id.chronometer)).start();
+                        }
                     } catch (JSONException e) {
-                        return;
+                        e.printStackTrace();
                     }
-                    Toast.makeText(getApplicationContext(), world, Toast.LENGTH_SHORT).show();
                 }
             });
         }
     };
 
+    public static JSONObject getData() {
+        return data;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,15 +109,18 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
         setContentView(R.layout.activity_addresspayment);
         getSupportActionBar().hide();
 
+        jobtype = (TextView) findViewById(R.id.jobtype);
+        addressedittext = (BootstrapEditText) findViewById(R.id.addressedittext);
+        addressdesc = (BootstrapEditText) findViewById(R.id.addressdesc);
+        neighborhood = (TextView) findViewById(R.id.neighborhood);
+
+        countdown = (CountdownChronometer) findViewById(R.id.chronometer);
+
         mSocket.on("new message", onNewMessage);
         mSocket.connect();
 
         locMan = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         locMan.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 10, this);
-//        Location lastLoc = locMan.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        myLat = lastLoc.getLatitude();
-//        myLng = lastLoc.getLongitude();
-        //startLocation();
 
         fragmentManager = getSupportFragmentManager();
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
@@ -102,7 +138,7 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
         mPrefsEditor.putString("saved_access_token",access_token);
         mPrefsEditor.putString("saved_username",username);
         mPrefsEditor.apply();
-        //commit()
+        //mPrefsEditor.commit();
 
         PhoneCallListener phoneListener = new PhoneCallListener();
         TelephonyManager telephonyManager = (TelephonyManager) this
@@ -114,7 +150,6 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     public void onDestroy()
     {
         super.onDestroy();
-        //SmartLocation.with(this).location().stop();
         mSocket.disconnect();
 
     }
@@ -128,15 +163,12 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
     @Override
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), myLat+" // "+myLng, Toast.LENGTH_LONG).show();
-        //startLocation();
-        //SocketIOmethods.sendMessage(mSocket,"Lat: "+myLat+" / Lng: "+myLng);
     }
 
     @Override
     public void onLocationChanged(Location location) {
         myLat = location.getLatitude();
         myLng = location.getLongitude();
-        //Toast.makeText(getApplicationContext(), myLat+" // "+myLng, Toast.LENGTH_LONG).show();
         JSONObject coordJson = new JSONObject();
         try {
             coordJson.put("lat",myLat);
@@ -176,16 +208,16 @@ public class AddressPaymentActivity extends ActionBarActivity implements Locatio
             if (TelephonyManager.CALL_STATE_RINGING == state) {
                 // phone ringing
                 Log.i(LOG_TAG, "RINGING, number: " + incomingNumber);
-                Intent i = new Intent(getApplicationContext(),AddressPaymentActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(getApplicationContext(),AddressPaymentActivity.class);
+                //startActivity(i);
             }
 
             if (TelephonyManager.CALL_STATE_OFFHOOK == state) {
                 // active
                 Log.i(LOG_TAG, "OFFHOOK");
                 isPhoneCalling = true;
-                Intent i = new Intent(getApplicationContext(),AddressPaymentActivity.class);
-                startActivity(i);
+                //Intent i = new Intent(getApplicationContext(),AddressPaymentActivity.class);
+                //startActivity(i);
             }
 
             if (TelephonyManager.CALL_STATE_IDLE == state) {

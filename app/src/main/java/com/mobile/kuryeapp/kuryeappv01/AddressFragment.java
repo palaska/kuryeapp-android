@@ -12,12 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.beardedhen.androidbootstrap.BootstrapButton;
-import com.mobile.kuryeapp.kuryeappv01.Classes.customJob;
-import com.mobile.kuryeapp.kuryeappv01.Classes.customLocation;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class AddressFragment extends Fragment {
-    public customJob job;
-    public customLocation loc;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,53 +26,63 @@ public class AddressFragment extends Fragment {
         BootstrapButton gotomapbtn = (BootstrapButton) view.findViewById(R.id.gotomapbtn);
         BootstrapButton callbtn = (BootstrapButton) view.findViewById(R.id.callbtn);
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-        // incoming job object
-        loc = new customLocation(41.085050,29.046506);
-        job = new customJob("id132fdaslj13",
-                1,
-                "Kahve Diyari",
-                "Akaygen Sokak No:2 Küçükbebek Sarıyer / Hisarüstü",
-                "Boğaziçi Üniversitesi Güney Kampüsü Girişi Yanı",
-                loc,
-                0,
-                "pickup",
-                "05355963550");
-///////////////////////////////////////////////////////////////////////////////////////////////
         gotomapbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    if (job.getLocation().getX() == null){
-                        Toast.makeText(getActivity(),"Harita konumu bilgisi yok!",Toast.LENGTH_LONG).show();
-                    } else {
-                        Intent mapIntent = new Intent(getActivity(), MapsActivity.class);
-                        mapIntent.putExtra("x",job.getLocation().getX());
-                        mapIntent.putExtra("y",job.getLocation().getY());
-                        mapIntent.putExtra("address",job.getAddress());
-                        startActivity(mapIntent);
+                if (AddressPaymentActivity.getData() != null) {
+                    try {
+                        JSONObject dest = AddressPaymentActivity.getData().getJSONObject("destination");
+                        String name = dest.getString("name");
+                        String description = dest.getString("description");
+                        Double x = dest.getDouble("lat");
+                        Double y = dest.getDouble("lng");
+                        if (x == null) {
+                            Toast.makeText(getActivity(), "Harita konumu bilgisi yok!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent mapIntent = new Intent(getActivity(), MapsActivity.class);
+                            mapIntent.putExtra("x", x);
+                            mapIntent.putExtra("y", y);
+                            mapIntent.putExtra("name", name);
+                            mapIntent.putExtra("description", description);
+                            startActivity(mapIntent);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                }
+                else Toast.makeText(getActivity(),"Aktif görev yok.",Toast.LENGTH_SHORT).show();
             }
         });
+
 
         callbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    String phone = job.getPhone();
-                    if (phone == null){
-                        Toast.makeText(getActivity(),"Telefon bilgisi yok!",Toast.LENGTH_LONG).show();
+                if (AddressPaymentActivity.getData() != null) {
+                    String phone = null;
+                    try {
+                        phone = AddressPaymentActivity.getData().getString("phone");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    if (phone == null) {
+                        Toast.makeText(getActivity(), "Telefon bilgisi yok!", Toast.LENGTH_SHORT).show();
                     } else {
                         makeCall(phone);
                     }
+                } else Toast.makeText(getActivity(),"Aktif görev yok.",Toast.LENGTH_SHORT).show();
             }
         });
 
         return view;
     }
+
     protected void makeCall(String tel) {
         Log.i("Make call", "");
 
         Intent phoneIntent = new Intent(Intent.ACTION_CALL);
         phoneIntent.setData(Uri.parse("tel:" + tel));
+        //phoneIntent.setData(Uri.parse("tel:05355963550"));
 
         try {
             startActivity(phoneIntent);
@@ -81,6 +91,5 @@ public class AddressFragment extends Fragment {
             Log.i("make call catch","");
         }
     }
-
 
 }
